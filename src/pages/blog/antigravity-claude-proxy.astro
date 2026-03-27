@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Antigravity Claude Proxy: Free Claude Code — Rupadana">
+  <article class="reveal">
+    <span class="tag">AI Tools</span>
+    <h1>Exploring Antigravity Claude Proxy</h1>
+    <div class="meta">How to use Anthropic's Claude Code CLI for free via Google's infrastructure—and the risks involved.</div>
+
+    <div class="card article-content">
+      <p>
+        If you are a developer looking into AI-assisted coding, you have likely heard of <strong>Claude Code</strong>. It is a powerful CLI tool by Anthropic that acts as an agentic coding assistant right in your terminal. However, running agentic loops against the official Anthropic API can get extremely expensive very quickly.
+      </p>
+      
+      <p>
+        Enter <strong>Antigravity Claude Proxy</strong>. This open-source project acts as a bridge, allowing you to use Claude Code (and other tools like OpenClaw) without paying for Anthropic API credits.
+      </p>
+
+      <h2>What is it and how does it work?</h2>
+      <p>
+        At its core, the Antigravity Claude Proxy is a local server that exposes an Anthropic-compatible API but routes the actual workload through Google's Generative AI infrastructure (specifically, Antigravity's Cloud Code). 
+      </p>
+
+      <p>The flow looks like this:</p>
+      <ul>
+        <li><strong>Claude Code</strong> sends a request thinking it is talking to the official Anthropic API.</li>
+        <li><strong>The Proxy</strong> intercepts this request, taking your local Google OAuth token.</li>
+        <li>It translates the Anthropic message format into Google's Generative AI format.</li>
+        <li>The request is processed by Google's backend (which currently offers free/generous quotas for Cloud Code).</li>
+        <li>The proxy translates the response back into Anthropic's format (fully supporting streaming and "thinking" blocks) and hands it back to your CLI.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>The result:</strong> You get the premium experience of Claude Code inside your terminal, powered by models like Gemini 1.5 Pro or Claude 3.5 Sonnet, completely for free.
+      </div>
+
+      <h2>The Elephant in the Room: The Risks ⚠️</h2>
+      <p>
+        Before you rush to install it, you need to understand that this is an unofficial workaround. By proxying traffic meant for Cloud Code, you are technically violating Google's Terms of Service.
+      </p>
+
+      <p>
+        According to the repository's maintainers, Google has actively issued bans and shadow-bans on accounts utilizing this proxy. 
+      </p>
+
+      <p>
+        If you decide to experiment with this tool, <strong>never use your primary Google account.</strong> Always use a dedicated burner account. You can optionally add that burner account to your main account's Google Workspace/Family plan if needed, but keep your primary digital identity isolated from this proxy.
+      </p>
+
+      <h2>How to try it</h2>
+      <p>
+        If you accept the risks and have a burner account ready, running it is straightforward since it requires no heavy installation if you have Node.js.
+      </p>
+
+      <div class="code-block">
+        <code>
+# Run the proxy directly
+npx antigravity-claude-proxy@latest start
+
+# Open the Web UI to add your burner Google Account
+http://localhost:8080
+        </code>
+      </div>
+
+      <p>
+        Once the proxy is running and authenticated, you simply point your Claude Code configuration (`~/.claude/settings.json` or environment variables) to `http://localhost:8080` instead of the official API endpoint.
+      </p>
+
+      <h2>Final Thoughts</h2>
+      <p>
+        Antigravity Claude Proxy is a fascinating technical workaround that democratizes access to expensive agentic coding tools. It highlights how much friction API pricing adds to the current AI developer experience. However, its reliance on a ToS violation makes it unsuitable for professional or production environments. Treat it as a powerful, experimental hack for personal learning.
+      </p>
+      
+      <p>
+        You can check out the source code and full documentation on their <a class="inline-link" href="https://github.com/badrisnarayanan/antigravity-claude-proxy" target="_blank">GitHub Repository</a>.
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+article {
+  padding: 64px 0 56px;
+}
+h1 {
+  margin: 18px 0 10px;
+}
+.meta {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.article-content p, 
+.article-content li {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.article-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.article-content ul {
+  padding-left: 20px;
+}
+.callout {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255, 123, 139, 0.08); /* Danger/Warning tint */
+  border: 1px solid rgba(255, 123, 139, 0.16);
+  color: #ffb3bc;
+}
+.code-block {
+  margin-top: 14px;
+  margin-bottom: 14px;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(121, 247, 176, 0.08);
+  overflow: auto;
+}
+.code-block code {
+  font-family: "SFMono-Regular", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  color: var(--muted);
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+</style>
