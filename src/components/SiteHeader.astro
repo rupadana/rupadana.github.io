@@ -2,8 +2,13 @@
 ---
 <header class="site-header">
   <div class="container nav">
-    <a class="brand" href="/#top">RUPADANA</a>
-    <nav class="nav-links">
+    <div class="nav-brand-wrapper">
+      <a class="brand" href="/#top">RUPADANA</a>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Menu">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+    <nav id="nav-links" class="nav-links">
       <a href="/#about">about.ts</a>
       <a href="/#experience">experience.ts</a>
       <a href="/#stack">stack.ts</a>
@@ -13,3 +18,22 @@
     </nav>
   </div>
 </header>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  menuToggle?.addEventListener('click', () => {
+    navLinks?.classList.toggle('active');
+    menuToggle?.classList.toggle('open');
+  });
+
+  // Close menu when clicking a link
+  const links = navLinks?.querySelectorAll('a');
+  links?.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks?.classList.remove('active');
+      menuToggle?.classList.remove('open');
+    });
+  });
+</script>
