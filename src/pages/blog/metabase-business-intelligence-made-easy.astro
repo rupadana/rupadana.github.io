@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Metabase: Business Intelligence Made Easy — Rupadana">
+  <article class="reveal">
+    <span class="tag">Data</span>
+    <h1>Metabase: Business Intelligence Made Easy for Everyone</h1>
+    <div class="meta">Make data-driven decisions without needing to be an SQL expert. An introduction to the most popular open-source BI tool.</div>
+
+    <div class="card article-content">
+      <p>
+        As businesses grow, so does their data. But data is only useful if it's accessible. For a long time, getting answers from a database meant either being an <strong>SQL expert</strong> or constantly bugging the engineering team for custom reports. 
+      </p>
+      
+      <p>
+        <strong>Metabase</strong> changes that. It is an open-source Business Intelligence (BI) tool that makes it incredibly simple to visualize and share data without writing a single line of code.
+      </p>
+
+      <h2>What is Metabase?</h2>
+      <p>
+        Metabase is a web-based application that connects to your databases (like PostgreSQL, MySQL, or MongoDB) and allows you to "ask questions" about your data. It turns those questions into beautiful charts and interactive dashboards.
+      </p>
+
+      <h3>Key Features:</h3>
+      <ul>
+        <li><strong>Visual Query Builder:</strong> The "Ask a question" feature allows non-technical users to filter, aggregate, and join tables using a simple point-and-click interface.</li>
+        <li><strong>SQL Editor:</strong> For data analysts and engineers, there is a full-featured SQL editor to write complex queries when the visual builder isn't enough.</li>
+        <li><strong>Interactive Dashboards:</strong> Combine multiple "questions" into a single dashboard to track your KPIs in real-time.</li>
+        <li><strong>Alerts and Subscriptions:</strong> Get notified via Email or Slack when a specific metric hits a certain threshold.</li>
+        <li><strong>Embedding:</strong> You can embed Metabase charts directly into your own applications or internal platforms (perfect if you use Laravel/Filament like we do).</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Fun Fact:</strong> Metabase is designed so that you can set it up in under 5 minutes using Docker.
+      </div>
+
+      <h2>Why Developers Love It</h2>
+      <p>
+        As a developer, one of the biggest benefits of Metabase is <strong>self-service analytics</strong>. By setting up Metabase for your team, you empower them to find their own answers. No more manual CSV exports or one-off report scripts. 
+      </p>
+
+      <p>
+        It also supports a wide variety of data sources, from traditional SQL databases to cloud data warehouses like BigQuery or Snowflake.
+      </p>
+
+      <h2>Self-Hosting and Privacy</h2>
+      <p>
+        Like many of the tools I advocate for (OpenClaw, Hoppscotch), Metabase is open source and can be self-hosted. This is crucial for security-conscious organizations. Your data never leaves your infrastructure, and you have complete control over who can see what.
+      </p>
+
+      <h2>Final Thoughts</h2>
+      <p>
+        Metabase is the "missing link" between raw data and actionable insights. It’s powerful enough for data scientists but simple enough for a marketing manager to use. If your data is currently trapped in a database, Metabase is the fastest way to set it free.
+      </p>
+      
+      <p>
+        Check out their official site at <a class="inline-link" href="https://www.metabase.com" target="_blank">metabase.com</a> or explore the <a class="inline-link" href="https://github.com/metabase/metabase" target="_blank">GitHub repository</a>.
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+article {
+  padding: 64px 0 56px;
+}
+h1 {
+  margin: 18px 0 10px;
+}
+.meta {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.article-content p, 
+.article-content li {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.article-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.article-content h3 {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+.article-content ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+.callout {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(89, 215, 255, 0.05);
+  border: 1px solid rgba(89, 215, 255, 0.12);
+  color: #cfefff;
+}
+</style>
