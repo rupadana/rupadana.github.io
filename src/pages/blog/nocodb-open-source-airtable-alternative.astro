@@ -1,0 +1,98 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="NocoDB: Open-Source Airtable Alternative — Rupadana">
+  <article class="reveal">
+    <span class="tag">No-Code</span>
+    <h1>NocoDB: The Open-Source Airtable Alternative for Your Own Database</h1>
+    <div class="meta">Turn any SQL database into a smart spreadsheet with full collaboration features and instant APIs.</div>
+
+    <div class="card article-content">
+      <p>
+        No-code platforms like <strong>Airtable</strong> have revolutionized how teams manage data. They offer the familiarity of a spreadsheet combined with the power of a database. However, Airtable is closed-source, can get expensive, and—most importantly—your data lives on their servers.
+      </p>
+      
+      <p>
+        <strong>NocoDB</strong> is the open-source answer to this problem. It allows you to transform any existing SQL database into a smart spreadsheet, giving you the best of both worlds: no-code ease of use and full data ownership.
+      </p>
+
+      <h2>What is NocoDB?</h2>
+      <p>
+        NocoDB is a platform that connects to your existing data (MySQL, PostgreSQL, SQL Server, etc.) and provides a rich, collaborative interface. It doesn't just display data; it allows you to build entire workflows around it.
+      </p>
+
+      <h3>Key Features:</h3>
+      <ul>
+        <li><strong>Spreadsheet-Database Hybrid:</strong> View your data in grids, galleries, forms, or kanban boards. Create relationships between tables just by clicking.</li>
+        <li><strong>Instant APIs:</strong> The moment you connect your database, NocoDB generates professional-grade REST and GraphQL APIs. This is a game-changer for developers.</li>
+        <li><strong>Automations:</strong> Trigger actions based on data changes. Send Slack messages, emails, or call webhooks when a new row is added.</li>
+        <li><strong>App Store:</strong> Integrate with external services like Microsoft Teams, Discord, Twilio, and more.</li>
+        <li><strong>Self-Hostable:</strong> Run it on your own VPS or even locally using Docker.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Why it matters:</strong> NocoDB doesn't lock your data into a proprietary format. It sits on top of your actual SQL database.
+      </div>
+
+      <h2>NocoDB vs. Airtable</h2>
+      <p>
+        While Airtable is great for quick, isolated projects, NocoDB is superior when you already have a database for your application. If you are building a product with a PostgreSQL backend, you can point NocoDB at it and suddenly your non-technical team members can manage data safely through a beautiful UI.
+      </p>
+
+      <h2>Privacy and Compliance</h2>
+      <p>
+        For developers working with sensitive user data, self-hosting NocoDB is a massive win for compliance. You don't have to worry about third-party data processing agreements because the data never leaves your infrastructure.
+      </p>
+
+      <h2>Final Thoughts</h2>
+      <p>
+        NocoDB is a powerful testament to the strength of open-source software. It provides an enterprise-grade no-code platform that puts the power back into the hands of the user. Whether you're building an internal tool or a complex data management system, NocoDB should be on your radar.
+      </p>
+      
+      <p>
+        Learn more at <a class="inline-link" href="https://nocodb.com" target="_blank">nocodb.com</a> or check out their <a class="inline-link" href="https://github.com/nocodb/nocodb" target="_blank">GitHub</a>.
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+article {
+  padding: 64px 0 56px;
+}
+h1 {
+  margin: 18px 0 10px;
+}
+.meta {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.article-content p, 
+.article-content li {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.article-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.article-content h3 {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+.article-content ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+.callout {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(121, 247, 176, 0.05);
+  border: 1px solid rgba(121, 247, 176, 0.12);
+  color: var(--text);
+}
+</style>
