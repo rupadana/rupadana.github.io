@@ -1,0 +1,49 @@
+---
+import SiteHeader from '../components/SiteHeader.astro';
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Personal website of Rupadana — Full Stack Developer, System & Product Engineer based in Bali, Indonesia." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	</head>
+	<body>
+		<SiteHeader />
+		<main id="top" class="container">
+			<slot />
+			<footer>
+				<div>© {new Date().getFullYear()} Rupadana // full stack developer // system & product engineer.</div>
+			</footer>
+		</main>
+
+		<script>
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('in-view');
+						}
+					});
+				},
+				{
+					threshold: 0.14,
+					rootMargin: '0px 0px -40px 0px',
+				}
+			);
+
+			document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+		</script>
+	</body>
+</html>

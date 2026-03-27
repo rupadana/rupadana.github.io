@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Blog — Rupadana">
+  <section class="hero reveal">
+    <h1>Notes on systems, tools, and useful software.</h1>
+    <p class="lead">
+      A small place for technical writing, ideas, and practical notes on building products,
+      backend systems, and developer workflows.
+    </p>
+  </section>
+
+  <section class="article-list reveal">
+    <article class="card">
+      <span class="tag">OpenClaw</span>
+      <h2>What is OpenClaw?</h2>
+      <p>
+        A practical introduction to OpenClaw: what it is, how it works, and why it matters for people
+        who want a self-hosted AI assistant they can actually message from anywhere.
+      </p>
+      <a class="inline-link" href="/blog/what-is-openclaw">Read article →</a>
+    </article>
+  </section>
+</Layout>
+
+<style>
+.article-list {
+  display: grid;
+  gap: 18px;
+  padding: 24px 0 56px;
+}
+.card h2 {
+  margin: 14px 0 10px;
+}
+</style>

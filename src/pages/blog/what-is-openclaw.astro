@@ -1,0 +1,125 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="What is OpenClaw? — Rupadana">
+  <article class="reveal">
+    <span class="tag">OpenClaw</span>
+    <h1>What is OpenClaw?</h1>
+    <div class="meta">A practical introduction to a self-hosted AI gateway for messaging-first workflows.</div>
+
+    <div class="card article-content">
+      <p>
+        OpenClaw is a self-hosted gateway that connects chat apps like Telegram, WhatsApp, Discord,
+        iMessage, and other channels to AI agents. Instead of opening a browser tab or jumping between
+        separate tools, you can message your assistant from the apps you already use and let the gateway
+        handle sessions, routing, media, and tool-backed responses.
+      </p>
+
+      <div class="callout">
+        In short: OpenClaw turns your own machine or server into the bridge between your chat apps and a
+        capable AI assistant.
+      </div>
+
+      <h2>Why OpenClaw is interesting</h2>
+      <p>
+        A lot of AI tools still assume the browser is the center of everything. OpenClaw takes a different
+        approach. It treats messaging as the primary interface. That changes the experience in a useful way:
+        you can ask for help, trigger actions, check progress, or manage ongoing work straight from your phone
+        or your preferred chat app.
+      </p>
+
+      <p>
+        It is also self-hosted, which matters. The gateway runs on your own hardware or server, so you keep
+        more control over the environment, the data flow, and the integrations around it.
+      </p>
+
+      <h2>How it works</h2>
+      <p>
+        At the center is the Gateway. The Gateway acts as the single source of truth for sessions,
+        connections, and routing. Chat apps connect into the Gateway, and the Gateway passes work to AI
+        agents, tools, web interfaces, and optional companion apps.
+      </p>
+
+      <p>
+        In practice, that means one setup can serve multiple channels at the same time. You can talk to the
+        same assistant from Telegram, Discord, or other supported surfaces without building a separate stack
+        for each one.
+      </p>
+
+      <h2>What makes it different</h2>
+      <ul>
+        <li><strong>Self-hosted:</strong> runs on your machine, under your control.</li>
+        <li><strong>Multi-channel:</strong> one gateway can support several messaging platforms at once.</li>
+        <li><strong>Agent-native:</strong> designed for tool use, sessions, memory, and multi-agent flows.</li>
+        <li><strong>Open source:</strong> flexible, inspectable, and extensible.</li>
+      </ul>
+
+      <h2>Who it is for</h2>
+      <p>
+        OpenClaw makes the most sense for developers, operators, and power users who want a practical AI
+        assistant they can reach from anywhere. If you care about owning the stack, wiring your own tools,
+        or keeping your workflows close to messaging, it is a strong fit.
+      </p>
+
+      <p>
+        It is especially compelling if you want an assistant that feels persistent and operational rather than
+        purely conversational. The value is not just “chat with AI” — it is “message an assistant that can
+        actually do work inside your environment.”
+      </p>
+
+      <h2>Why it matters</h2>
+      <p>
+        The important idea behind OpenClaw is not just convenience. It is interface design. Messaging is already
+        where people coordinate work, ask questions, and follow up on tasks. OpenClaw meets people where they are,
+        then adds a real gateway layer for sessions, tools, and automation behind the scenes.
+      </p>
+
+      <p>
+        That makes it feel less like a toy chatbot and more like infrastructure for a personal or team assistant.
+      </p>
+
+      <h2>Final thought</h2>
+      <p>
+        If you want a hosted AI product with no setup, OpenClaw is probably not the point. But if you want a
+        self-hosted, messaging-first assistant you can shape around your own tools and workflows, OpenClaw is
+        a genuinely interesting system. It takes the idea of “AI assistant” out of a single web app and turns
+        it into something closer to an always-available operational layer.
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+article {
+  padding: 64px 0 56px;
+}
+h1 {
+  margin: 18px 0 10px;
+}
+.meta {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.article-content p, 
+.article-content li {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.article-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.article-content ul {
+  padding-left: 20px;
+}
+.callout {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(89, 215, 255, 0.08);
+  border: 1px solid rgba(89, 215, 255, 0.16);
+  color: #cfefff;
+}
+</style>
