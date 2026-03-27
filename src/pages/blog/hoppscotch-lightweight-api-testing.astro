@@ -1,0 +1,101 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Hoppscotch: Lightweight API Testing — Rupadana">
+  <article class="reveal">
+    <span class="tag">API</span>
+    <h1>Hoppscotch: The Lightweight, Open Source Postman Alternative</h1>
+    <div class="meta">A fast, web-native, and open-source API development suite designed for modern workflows.</div>
+
+    <div class="card article-content">
+      <p>
+        Every backend developer needs a reliable tool to test their endpoints. For years, <strong>Postman</strong> was the undisputed king. But over time, many developers—myself included—have noticed it becoming increasingly "bloated," requiring accounts for basic features and consuming significant system resources.
+      </p>
+      
+      <p>
+        This is where <strong>Hoppscotch</strong> (formerly known as Postwoman) shines. It is a lightweight, web-first alternative that brings back the simplicity of API testing.
+      </p>
+
+      <h2>What makes Hoppscotch different?</h2>
+      <p>
+        The most striking difference is the philosophy. Hoppscotch was built to be fast and accessible. Because it’s web-native, you don’t even need to install a desktop app; you can just open a browser tab and start testing immediately.
+      </p>
+
+      <h3>Key Features:</h3>
+      <ul>
+        <li><strong>Multi-Protocol Support:</strong> It handles REST, GraphQL, WebSockets, Socket.io, MQTT, and even gRPC.</li>
+        <li><strong>Zero Friction:</strong> No mandatory sign-ups. You can start making requests the second the page loads.</li>
+        <li><strong>Open Source:</strong> You can inspect the code, contribute, or even self-host it on your own VPS using Docker.</li>
+        <li><strong>Minimalist UI:</strong> A clean, focused interface that puts your API requests and responses front and center without unnecessary distractions.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Pro Tip:</strong> If you are running on a server with limited RAM (like a small VPS), Hoppscotch is much easier on your resources than traditional Electron-based desktop clients.
+      </div>
+
+      <h2>Privacy and Self-Hosting</h2>
+      <p>
+        In an era where data privacy is paramount, Hoppscotch offers a significant advantage. Since it is open source, you can deploy your own instance of Hoppscotch. This ensures that your sensitive API keys and internal endpoints never leave your own infrastructure.
+      </p>
+
+      <p>
+        For teams, it offers excellent collaboration features like shared collections and environment variables, allowing you to sync your testing setup across your entire engineering organization without relying on a third-party cloud provider.
+      </p>
+
+      <h2>Why should you switch?</h2>
+      <p>
+        If you find yourself waiting for your current API client to load, or if you're tired of being nagged to create an account just to send a simple <code>GET</code> request, Hoppscotch is for you. It honors the "tools should stay out of your way" philosophy that we value in modern development.
+      </p>
+
+      <h2>Final Thoughts</h2>
+      <p>
+        Hoppscotch isn't just a "clone" of Postman; it's a faster, more open evolution of what an API development suite should be. Whether you're building a simple blog backend or a complex microservice architecture, it's worth adding to your toolkit.
+      </p>
+      
+      <p>
+        Ready to try it out? Head over to <a class="inline-link" href="https://hoppscotch.io" target="_blank">hoppscotch.io</a> or check out their <a class="inline-link" href="https://github.com/hoppscotch/hoppscotch" target="_blank">GitHub</a>.
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+article {
+  padding: 64px 0 56px;
+}
+h1 {
+  margin: 18px 0 10px;
+}
+.meta {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.article-content p, 
+.article-content li {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.article-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.article-content h3 {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+.article-content ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+.callout {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(121, 247, 176, 0.05);
+  border: 1px solid rgba(121, 247, 176, 0.12);
+  color: var(--text);
+}
+</style>
