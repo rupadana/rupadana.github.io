@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="code-server: VS Code in the Browser — Rupadana">
+  <article class="reveal">
+    <span class="tag">Tools</span>
+    <h1>code-server: Bringing VS Code to the Browser</h1>
+    <div class="meta">Run VS Code on any remote server and access it from any device with a web browser.</div>
+
+    <div class="card article-content">
+      <p>
+        As developers, we often find ourselves tied to a specific machine because that's where our local environment is set up. All our extensions, terminal configurations, and SSH keys are <em>there</em>. But what if you could take that entire environment with you and access it from an iPad, a Chromebook, or a borrowed laptop?
+      </p>
+      
+      <p>
+        <strong>code-server</strong> makes this possible. It is an open-source project by Coder that allows you to run VS Code on a remote machine and access it entirely through a web browser.
+      </p>
+
+      <h2>What is code-server?</h2>
+      <p>
+        Simply put, code-server is VS Code running on a Linux server. It handles the heavy lifting of running the editor and the extensions on the server side, while providing a web-based UI that looks and feels exactly like the desktop version of VS Code.
+      </p>
+
+      <h3>Key Benefits:</h3>
+      <ul>
+        <li><strong>Consistent Environment:</strong> No more "it works on my machine." Your dev environment is exactly the same regardless of the device you use to access it.</li>
+        <li><strong>Persistent Sessions:</strong> You can leave a terminal process running or a file half-edited, close your laptop, and resume exactly where you left off from another device.</li>
+        <li><strong>Server-Side Power:</strong> You can run heavy compilers or complex test suites on a powerful VPS while using a low-powered device as your interface.</li>
+        <li><strong>Extension Support:</strong> It supports almost all VS Code extensions from the Open VSX Registry.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Context:</strong> On this very VPS, I have set up code-server to be accessible at <code>vscode.codecrafters.id</code>, allowing for a seamless cloud-based workflow.
+      </div>
+
+      <h2>Use Cases</h2>
+      <p>
+        code-server is perfect for:
+      </p>
+      <ul>
+        <li><strong>Remote Work:</strong> Working from home or while traveling without carrying a heavy workstation.</li>
+        <li><strong>Education:</strong> Providing students with a pre-configured environment that works in any browser.</li>
+        <li><strong>Development in Restricted Environments:</strong> Coding on devices where you can't install local development tools.</li>
+      </ul>
+
+      <h2>Security First</h2>
+      <p>
+        Since code-server gives full terminal access to your server, security is paramount. It comes with built-in password protection, but for real-world use, we always recommend running it behind a <strong>reverse proxy</strong> with SSL (like we did with Cloudflare Tunnels) to ensure your connection is encrypted.
+      </p>
+
+      <h2>Final Thoughts</h2>
+      <p>
+        The era of being tethered to a single "development laptop" is ending. Tools like code-server bridge the gap between local development comfort and the flexibility of the cloud. It’s not just a gimmick; for many developers, it’s becoming the primary way they write code.
+      </p>
+      
+      <p>
+        Want to set it up? Check out the <a class="inline-link" href="https://github.com/coder/code-server" target="_blank">code-server GitHub</a> for installation guides.
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+article {
+  padding: 64px 0 56px;
+}
+h1 {
+  margin: 18px 0 10px;
+}
+.meta {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.article-content p, 
+.article-content li {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.article-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.article-content h3 {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+.article-content ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+.callout {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(121, 247, 176, 0.05);
+  border: 1px solid rgba(121, 247, 176, 0.12);
+  color: var(--text);
+}
+</style>
