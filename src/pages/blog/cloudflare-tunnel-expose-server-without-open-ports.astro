@@ -1,0 +1,212 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Cloudflare Tunnel: Expose Your Server Without Opening a Single Port — Rupadana">
+  <article class="reveal">
+    <span class="tag">Networking</span>
+    <h1>Cloudflare Tunnel: Expose Your Server Without Opening a Single Port</h1>
+    <div class="meta">The simplest way to self-host securely — no port forwarding, no exposed IP, no headaches.</div>
+
+    <div class="card article-content">
+      <p>
+        If you have ever tried to self-host a web application, you know the typical drill: open a port 
+        on your router, configure a firewall, set up a reverse proxy, deal with a dynamic IP address, 
+        and hope nothing goes wrong. It works, but it requires exposing your home or server IP directly 
+        to the internet.
+      </p>
+      <p>
+        <strong>Cloudflare Tunnel</strong> (powered by a small daemon called <code>cloudflared</code>) 
+        turns this model completely upside down — and for most self-hosters and developers, it is a 
+        much better approach.
+      </p>
+
+      <div class="callout">
+        Cloudflare Tunnel creates outbound-only connections from your server to Cloudflare's global 
+        network. You never open a single inbound port. Your real IP address is never exposed. 
+        Cloudflare handles all routing, SSL, and DDoS protection for you.
+      </div>
+
+      <h2>How It Works</h2>
+      <p>
+        When you run <code>cloudflared</code>, it establishes a persistent, encrypted outbound 
+        connection (using the QUIC or HTTP/2 protocol) from your machine to the nearest Cloudflare 
+        data center. This connection is called a <strong>tunnel</strong>.
+      </p>
+      <p>
+        When a visitor goes to your domain (e.g., <code>app.yourdomain.com</code>), Cloudflare 
+        receives that request at the edge, routes it through the tunnel, and forwards it to your 
+        local application running on something like <code>localhost:3000</code>. The response 
+        travels back the same way.
+      </p>
+      <p>
+        From the outside world, all they see is Cloudflare's IP. Your server's real IP remains 
+        completely hidden.
+      </p>
+
+      <h2>Cloudflare Tunnel vs. Traditional Methods</h2>
+      <p>
+        It helps to compare Cloudflare Tunnel against the two most common alternatives:
+      </p>
+      <ul>
+        <li>
+          <strong>Port Forwarding:</strong> Opens a specific port on your router and points it 
+          directly to your machine. Simple but risky — your IP is exposed, and every open port 
+          is a potential attack surface.
+        </li>
+        <li>
+          <strong>Reverse Proxy (nginx/Caddy):</strong> More control and flexibility. Great for 
+          power users. But requires a static public IP, TLS certificate management, and firewall 
+          configuration. More pieces that can break.
+        </li>
+        <li>
+          <strong>Cloudflare Tunnel:</strong> No open ports. No exposed IP. Automatic SSL. 
+          Built-in DDoS protection. Zero firewall configuration. Works even behind CGNAT 
+          (common with mobile/ISP connections).
+        </li>
+      </ul>
+
+      <h2>Setting Up a Named Tunnel</h2>
+      <p>
+        The free tier supports named tunnels, which are persistent and manageable via the CLI. 
+        Here is the full setup flow:
+      </p>
+      <pre><code># 1. Install cloudflared
+# On Linux (amd64):
+curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 \
+  -o cloudflared && chmod +x cloudflared
+
+# 2. Authenticate with your Cloudflare account
+./cloudflared tunnel login
+
+# 3. Create a named tunnel
+./cloudflared tunnel create my-tunnel
+
+# 4. Create a config file at ~/.cloudflared/config.yaml
+# tunnel: &lt;your-tunnel-id&gt;
+# credentials-file: ~/.cloudflared/&lt;tunnel-id&gt;.json
+# ingress:
+#   - hostname: app.yourdomain.com
+#     service: http://localhost:3000
+#   - service: http_status:404
+
+# 5. Route DNS to the tunnel
+./cloudflared tunnel route dns my-tunnel app.yourdomain.com
+
+# 6. Run the tunnel
+./cloudflared tunnel run my-tunnel</code></pre>
+
+      <h2>Multiple Services, One Tunnel</h2>
+      <p>
+        One of the most powerful features is the ability to route multiple subdomains through 
+        a single tunnel using the <code>ingress</code> configuration. For example, this site 
+        and its related services are all served through one tunnel with the following config:
+      </p>
+      <pre><code>ingress:
+  - hostname: vscode.codecrafters.id
+    service: http://localhost:8080
+  - hostname: rupadana.codecrafters.id
+    service: http://localhost:3000
+  - hostname: community.codecrafters.id
+    service: http://localhost:8001
+  - service: http_status:404</code></pre>
+      <p>
+        Three completely separate services, one daemon, zero open ports.
+      </p>
+
+      <h2>Security Benefits</h2>
+      <ul>
+        <li><strong>No exposed IP:</strong> Attackers cannot directly reach your server even if they know your domain.</li>
+        <li><strong>Automatic HTTPS:</strong> Cloudflare handles SSL certificates for all your hostnames. No Let's Encrypt renewal scripts needed.</li>
+        <li><strong>DDoS Protection:</strong> Cloudflare's network absorbs volumetric attacks before they reach your machine.</li>
+        <li><strong>Zero Trust Access (optional):</strong> Add authentication policies via Cloudflare Access to restrict who can reach specific services — without any code changes in your app.</li>
+      </ul>
+
+      <h2>Who Should Use Cloudflare Tunnel?</h2>
+      <p>
+        Cloudflare Tunnel is a great fit if you are:
+      </p>
+      <ul>
+        <li>Self-hosting on a VPS, homelab, or even a Raspberry Pi</li>
+        <li>Developing locally and want to share a preview URL with a client</li>
+        <li>Behind CGNAT or a dynamic IP where traditional port forwarding does not work</li>
+        <li>Running multiple services and want clean subdomain routing without a heavy nginx setup</li>
+      </ul>
+
+      <h2>Limitations to Be Aware Of</h2>
+      <p>
+        Cloudflare Tunnel is not perfect for every scenario. A few things worth knowing:
+      </p>
+      <ul>
+        <li>Traffic flows through Cloudflare's network, which means Cloudflare can technically inspect unencrypted traffic between their edge and your server (end-to-end encryption to the origin requires additional config).</li>
+        <li>Free tier has bandwidth and request limits. For high-traffic production apps, you may eventually need a paid plan.</li>
+        <li>Latency may be slightly higher than a direct connection for users geographically close to your server, since all traffic is routed through Cloudflare.</li>
+      </ul>
+
+      <h2>Final Thought</h2>
+      <p>
+        For most developers and indie hackers running their own stack, Cloudflare Tunnel is one 
+        of those tools that genuinely changes how you think about self-hosting. The combination 
+        of zero port exposure, automatic SSL, and multi-service routing through a single lightweight 
+        daemon is hard to beat — especially on the free tier.
+      </p>
+      <p>
+        If you are running anything on a VPS or homelab and are not using it yet, it is worth 
+        fifteen minutes of setup to try.
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+article {
+  padding: 64px 0 56px;
+}
+h1 {
+  margin: 18px 0 10px;
+}
+.meta {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.article-content p,
+.article-content li {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.article-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.article-content ul {
+  padding-left: 20px;
+}
+.callout {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(89, 215, 255, 0.08);
+  border: 1px solid rgba(89, 215, 255, 0.16);
+  color: #cfefff;
+}
+code {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.92em;
+}
+pre {
+  background: #1a1a1a;
+  padding: 16px;
+  border-radius: 12px;
+  overflow-x: auto;
+  margin: 16px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+pre code {
+  background: none;
+  padding: 0;
+}
+</style>

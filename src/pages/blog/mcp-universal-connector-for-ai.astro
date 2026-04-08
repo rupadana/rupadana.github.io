@@ -1,0 +1,135 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Model Context Protocol (MCP): The Universal Connector for AI — Rupadana">
+  <article class="reveal">
+    <span class="tag">AI Infrastructure</span>
+    <h1>Model Context Protocol (MCP): The Universal Connector for AI</h1>
+    <div class="meta">How Anthropic's new open standard is solving the "data silo" problem for AI agents.</div>
+
+    <div class="card article-content">
+      <p>
+        Until recently, every time you wanted to give an AI model access to a new data source—be it a 
+        PostgreSQL database, a Slack workspace, or a local file system—you had to write a custom 
+        integration. This fragmented approach made AI development slow and difficult to scale. 
+        Then came <strong>Model Context Protocol (MCP)</strong>.
+      </p>
+
+      <div class="callout">
+        Introduced by Anthropic in November 2024, <strong>MCP</strong> is an open-source standard 
+        that allows AI models to seamlessly connect to external data sources and tools without 
+        needing custom code for every single integration.
+      </div>
+
+      <h2>The Problem: The "Integration Tax"</h2>
+      <p>
+        Before MCP, if you wanted your AI assistant to read your Jira tickets and check your 
+        GitHub PRs, the developer of the AI application had to build two separate, complex 
+        integrations. If a third party released a new tool, they had to wait for AI platforms 
+        to support it.
+      </p>
+      <p>
+        MCP replaces this 1-to-1 mapping with a <strong>universal standard</strong>. Think of 
+        it like USB for AI: as long as the data source has an MCP server, any AI "host" 
+        (like Claude Desktop or an MCP-compatible IDE) can talk to it immediately.
+      </p>
+
+      <h2>The Architecture: Host, Client, and Server</h2>
+      <p>
+        The MCP ecosystem consists of three main components working together:
+      </p>
+      <ul>
+        <li><strong>The MCP Host:</strong> The application you are using, such as Claude Desktop, IDEs (Cursor/Windsurf), or custom AI agents.</li>
+        <li><strong>The MCP Client:</strong> The component within the host that initiates the connection to servers.</li>
+        <li><strong>The MCP Server:</strong> A lightweight program that exposes specific data or tools via the protocol (e.g., an MCP server for Google Drive or your local SQLite database).</li>
+      </ul>
+
+      <h2>What Can MCP Actually Do?</h2>
+      <p>
+        MCP provides three primary primitives that models can use:
+      </p>
+      <ul>
+        <li><strong>Resources:</strong> Read-only data like documentation, logs, or file contents.</li>
+        <li><strong>Tools:</strong> Executable functions that can perform actions, like sending an email or running a code snippet.</li>
+        <li><strong>Prompts:</strong> Pre-defined templates that help the model understand how to interact with specific data.</li>
+      </ul>
+
+      <h2>Why This is a Game Changer</h2>
+      <p>
+        The power of MCP lies in its <strong>composability</strong>. You can mix and match 
+        different MCP servers to give your AI assistant a massive "toolbox." For example, 
+        you could connect:
+      </p>
+      <ul>
+        <li>A <strong>GitHub MCP Server</strong> to read code.</li>
+        <li>A <strong>Postgres MCP Server</strong> to query data.</li>
+        <li>A <strong>Slack MCP Server</strong> to post updates.</li>
+      </ul>
+      <p>
+        Suddenly, your AI isn't just a chatbot; it's an operational assistant that can 
+        reason across your entire tech stack.
+      </p>
+
+      <h2>How to Get Started</h2>
+      <p>
+        For developers, creating an MCP server is surprisingly simple. You can write one 
+        in Python or TypeScript using the official SDKs. For users, you can already 
+        start using MCP in the Claude Desktop app by editing your <code>claude_desktop_config.json</code> 
+        file to point to local or remote MCP servers.
+      </p>
+
+      <h2>Conclusion</h2>
+      <p>
+        The Model Context Protocol is a massive step toward a future where AI agents are 
+        truly useful and integrated. By standardizing how models access information, 
+        Anthropic has lowered the barrier for developers and opened the door for a new 
+        generation of highly capable, tool-aware AI assistants.
+      </p>
+      <p>
+        If you're building in the AI space, MCP is no longer optional—it is the new 
+        standard for connectivity.
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+article {
+  padding: 64px 0 56px;
+}
+h1 {
+  margin: 18px 0 10px;
+}
+.meta {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.article-content p, 
+.article-content li {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.article-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.article-content ul {
+  padding-left: 20px;
+}
+.callout {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(89, 215, 255, 0.08);
+  border: 1px solid rgba(89, 215, 255, 0.16);
+  color: #cfefff;
+}
+code {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+</style>

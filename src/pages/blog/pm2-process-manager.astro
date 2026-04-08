@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="PM2: The Powerful Process Manager for Node.js and Python — Rupadana">
+  <article class="reveal">
+    <span class="tag">Process Management</span>
+    <h1>PM2: The Powerful Process Manager for Node.js and Python</h1>
+    <div class="meta">How to keep your web applications alive and performant in a production environment.</div>
+
+    <div class="card article-content">
+      <p>
+        In a production environment, simply running a script in the background is not enough. You need 
+        assurance that your application will automatically restart if it crashes, stay alive after 
+        a server reboot, and allow for easy monitoring of logs and resource usage. This is where 
+        <strong>PM2</strong> comes in.
+      </p>
+
+      <div class="callout">
+        PM2 is a production process manager for Node.js applications with a built-in load balancer. 
+        It allows you to keep applications alive forever, reload them without downtime, and facilitate 
+        common system admin tasks.
+      </div>
+
+      <h2>Why Use a Process Manager?</h2>
+      <p>
+        When you run a command like <code>node app.js</code> or <code>python3 -m http.server</code>, the process 
+        is tied to your current terminal session. If you close the terminal or if the process hits an 
+        error and crashes, your website goes down. 
+      </p>
+
+      <p>
+        PM2 solves this by daemonizing the application. It runs it in the background as a system service. 
+        If the app crashes, PM2 immediately restarts it. If the server reboots, PM2 can automatically 
+        resurrect all your saved processes.
+      </p>
+
+      <h2>Key Features of PM2</h2>
+      <ul>
+        <li><strong>Automatic Restart:</strong> If your app crashes or the VPS runs out of memory, PM2 will try to bring it back online.</li>
+        <li><strong>Cluster Mode:</strong> Node.js is single-threaded. PM2's cluster mode allows you to spawn multiple instances of your app across all CPU cores, acting as a built-in load balancer.</li>
+        <li><strong>Log Management:</strong> Easily view, flush, and manage logs for all your different services from a single interface.</li>
+        <li><strong>Process Monitoring:</strong> Real-time monitoring of CPU and RAM usage for each individual process.</li>
+        <li><strong>Startup Scripts:</strong> Generate and configure startup scripts to keep your apps running after a VPS restart.</li>
+      </ul>
+
+      <h2>Beyond Node.js: Managing Python and More</h2>
+      <p>
+        While built with Node.js in mind, PM2 is surprisingly versatile. It can manage any executable. 
+        For example, if you are serving a static site using Python's built-in server, you can manage it 
+        with PM2:
+      </p>
+
+      <pre><code>pm2 start "python3 -m http.server 3000" --name "my-blog"</code></pre>
+
+      <p>
+        This is exactly how I manage the portfolio site you are reading right now. It ensures that 
+        even if the server experiences high load or a temporary crash, the blog remains accessible.
+      </p>
+
+      <h2>Managing Resource-Constrained Environments</h2>
+      <p>
+        On a VPS with limited RAM (like 2GB), PM2 is essential. It helps you identify which processes 
+        are consuming too much memory and allows you to "save" a stable process list that can be 
+        recovered if the OOM (Out of Memory) killer starts terminating processes.
+      </p>
+
+      <p>
+        Commands like <code>pm2 status</code> and <code>pm2 monit</code> give you a clear dashboard 
+        of your server's health at a glance.
+      </p>
+
+      <h2>Conclusion</h2>
+      <p>
+        If you are moving from local development to a live VPS, PM2 should be one of the first 
+        tools you install. It provides the stability and observability needed to run professional 
+        web services without constant manual intervention.
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+article {
+  padding: 64px 0 56px;
+}
+h1 {
+  margin: 18px 0 10px;
+}
+.meta {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.article-content p, 
+.article-content li {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.article-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.article-content ul {
+  padding-left: 20px;
+}
+.callout {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(89, 215, 255, 0.08);
+  border: 1px solid rgba(89, 215, 255, 0.16);
+  color: #cfefff;
+}
+code {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+pre {
+  background: #1a1a1a;
+  padding: 16px;
+  border-radius: 12px;
+  overflow-x: auto;
+  margin: 16px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+</style>

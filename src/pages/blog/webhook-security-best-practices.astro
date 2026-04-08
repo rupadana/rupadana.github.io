@@ -1,0 +1,122 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Webhook Security: How to Secure Your Endpoints — Rupadana">
+  <article class="reveal">
+    <span class="tag">Security</span>
+    <h1>Webhook Security: How to Secure Your Endpoints</h1>
+    <div class="meta">Moving beyond simple endpoints: How to verify, protect, and harden your webhooks.</div>
+
+    <div class="card article-content">
+      <p>
+        Webhooks are the glue of the modern web, allowing services like Stripe, GitHub, and 
+        Shopify to notify your application when something happens. But there’s a catch: 
+        a webhook endpoint is a publicly accessible URL. If you don't secure it, anyone 
+        can send fake data to your server, triggering unauthorized actions or corrupting your database.
+      </p>
+
+      <div class="callout">
+        Webhook security is about answering one critical question: <strong>"How do I know this 
+        request actually came from the service I trust?"</strong>
+      </div>
+
+      <h2>1. Payload Signature Verification (HMAC)</h2>
+      <p>
+        This is the gold standard for webhook security. Most reputable providers (Stripe, GitHub, etc.) 
+        will sign the payload using a secret key only you and the provider know.
+      </p>
+      <ul>
+        <li>The provider hashes the payload with the secret key and sends the hash in a header (e.g., <code>X-Hub-Signature</code>).</li>
+        <li>Your server computes the hash of the received payload using the same secret.</li>
+        <li>If the hashes match, the request is authentic and the data hasn't been tampered with.</li>
+      </ul>
+
+      <h2>2. Replay Attack Protection</h2>
+      <p>
+        An attacker could intercept a valid signed request and send it again (a replay attack). 
+        To prevent this, many providers include a timestamp in the signature header. 
+        Your server should check if the timestamp is recent (e.g., within the last 5 minutes) 
+        before processing the request.
+      </p>
+
+      <h2>3. IP Allowlisting</h2>
+      <p>
+        Some providers publish a list of IP addresses they use to send webhooks. You can 
+        configure your firewall or application to only accept requests from these IPs. 
+        While not sufficient on its own (IPs can be spoofed), it adds a solid layer of defense-in-depth.
+      </p>
+
+      <h2>4. Secret Tokens</h2>
+      <p>
+        A simpler (but less robust) method is to include a unique secret token in the webhook URL 
+        or as a header. Your server checks for this token before processing. 
+        Example: <code>https://your-api.com/webhooks?token=SECRET_VALUE</code>. 
+        Note: This doesn't prevent payload tampering, but it stops random bots from hitting your endpoint.
+      </p>
+
+      <h2>5. Idempotency (Again!)</h2>
+      <p>
+        As we discussed in the previous post, webhooks are often delivered "at-least-once." 
+        Your webhook handler <strong>must</strong> be idempotent. If you receive the same 
+        event ID twice, your system should recognize it and avoid performing the same 
+        action twice (like double-shipping an order).
+      </p>
+
+      <h2>6. HTTPS is Mandatory</h2>
+      <p>
+        Never use HTTP for webhooks. Without TLS encryption, your secrets, tokens, and 
+        payload data are sent in plain text across the internet, making them trivial 
+        to intercept.
+      </p>
+
+      <h2>Conclusion</h2>
+      <p>
+        Securing webhooks is not just about keeping hackers out; it's about system 
+        predictability. By implementing signature verification and idempotency, 
+        you ensure that your integrations are both secure and resilient to the 
+        chaos of the public internet.
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+article {
+  padding: 64px 0 56px;
+}
+h1 {
+  margin: 18px 0 10px;
+}
+.meta {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.article-content p, 
+.article-content li {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.article-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.article-content ul {
+  padding-left: 20px;
+}
+.callout {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(89, 215, 255, 0.08);
+  border: 1px solid rgba(89, 215, 255, 0.16);
+  color: #cfefff;
+}
+code {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+</style>

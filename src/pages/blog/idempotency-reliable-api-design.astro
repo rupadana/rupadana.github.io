@@ -1,0 +1,132 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Idempotency: The Secret to Reliable API Design — Rupadana">
+  <article class="reveal">
+    <span class="tag">System Design</span>
+    <h1>Idempotency: The Secret to Reliable API Design</h1>
+    <div class="meta">Why doing the same thing twice shouldn't break your system.</div>
+
+    <div class="card article-content">
+      <p>
+        In the world of distributed systems, networks are unreliable. Requests fail, timeouts happen, 
+        and clients often retry. But what happens if a client retries a "Charge Credit Card" request 
+        because they didn't get a response, even though the first request actually succeeded? 
+        Without <strong>Idempotency</strong>, you might just charge them twice.
+      </p>
+
+      <div class="callout">
+        An API is <strong>idempotent</strong> if making the same request multiple times has the 
+        same effect as making it once. It’s the difference between a system that is fragile 
+        and one that is production-ready.
+      </div>
+
+      <h2>HTTP Methods and Idempotency</h2>
+      <p>
+        The HTTP specification defines certain methods as naturally idempotent:
+      </p>
+      <ul>
+        <li><strong>GET:</strong> Fetching data multiple times doesn't change anything.</li>
+        <li><strong>PUT:</strong> Replacing a resource with the same data multiple times leaves the resource in the same state.</li>
+        <li><strong>DELETE:</strong> Deleting something that is already gone results in the same final state (it's gone).</li>
+      </ul>
+      <p>
+        However, <strong>POST</strong> is notably <em>not</em> idempotent. Every time you POST to a 
+        collection, you typically create a new record. This is where most idempotency bugs live.
+      </p>
+
+      <h2>The "At-Least-Once" Delivery Problem</h2>
+      <p>
+        In distributed systems, we often deal with "at-least-once" delivery. This means a message 
+        might be delivered once, or it might be delivered five times due to network retries. 
+        If your backend isn't idempotent, these retries will cause data corruption or duplicate side effects.
+      </p>
+
+      <h2>How to Implement Idempotency</h2>
+      <p>
+        The most common way to handle idempotency for non-idempotent methods (like POST) is by 
+        using <strong>Idempotency Keys</strong>.
+      </p>
+
+      <h3>1. The Client Generates a Key</h3>
+      <p>
+        The client generates a unique identifier (usually a UUID) for a specific operation and 
+        sends it in a header, for example: <code>Idempotency-Key: fd6817b7-2245...</code>.
+      </p>
+
+      <h3>2. The Server Checks the Key</h3>
+      <p>
+        When the server receives the request, it checks its database (or a fast cache like Redis) 
+        to see if it has already processed a request with that specific key.
+      </p>
+
+      <h3>3. Return the Cached Response</h3>
+      <ul>
+        <li><strong>If the key exists:</strong> The server skips the processing and returns the <em>exact same response</em> it sent the first time.</li>
+        <li><strong>If the key doesn't exist:</strong> The server processes the request, saves the result along with the key, and then returns the response.</li>
+      </ul>
+
+      <h2>Real-World Example: Stripe</h2>
+      <p>
+        Stripe is famous for its robust implementation of idempotency. When you create a charge, 
+        you pass an <code>idempotency_key</code>. If the request fails halfway through, you can 
+        safely retry with the same key knowing Stripe won't create a second charge.
+      </p>
+
+      <h2>Key Benefits</h2>
+      <ul>
+        <li><strong>Fault Tolerance:</strong> Clients can safely retry failed network requests.</li>
+        <li><strong>Consistency:</strong> Prevents duplicate records and inconsistent states.</li>
+        <li><strong>User Experience:</strong> No "Double Charge" or "Duplicate Post" errors.</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+      <p>
+        Idempotency is often overlooked until something goes wrong. If you are building APIs 
+        that handle sensitive data—especially payments or inventory—idempotency is not a 
+        luxury; it is a requirement. By implementing unique request keys and caching 
+        responses, you build systems that are predictable, safe, and truly reliable.
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+article {
+  padding: 64px 0 56px;
+}
+h1 {
+  margin: 18px 0 10px;
+}
+.meta {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.article-content p, 
+.article-content li {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.article-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.article-content h3 {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+.article-content ul {
+  padding-left: 20px;
+}
+.callout {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(89, 215, 255, 0.08);
+  border: 1px solid rgba(89, 215, 255, 0.16);
+  color: #cfefff;
+}
+</style>

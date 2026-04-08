@@ -1,0 +1,131 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Qwen 2.5: The Open-Source LLM Powerhouse — Rupadana">
+  <article class="reveal">
+    <span class="tag">AI</span>
+    <h1>Qwen 2.5: The Open-Source LLM Powerhouse</h1>
+    <div class="meta">A deep dive into Alibaba's latest model series and why it is shaking up the open-source community.</div>
+
+    <div class="card article-content">
+      <p>
+        The landscape of Large Language Models (LLMs) is shifting rapidly. While proprietary models 
+        like GPT-4 and Claude 3.5 Sonnet often dominate the headlines, a new contender from 
+        Alibaba Cloud's Qwen team has been making massive waves in the open-source community: 
+        <strong>Qwen 2.5</strong>.
+      </p>
+
+      <div class="callout">
+        Qwen 2.5 is not just another model; it is a full ecosystem of models ranging from 
+        tiny 0.5B parameters to massive 72B powerhouses, featuring specialized versions 
+        for coding, mathematics, and long-context processing.
+      </div>
+
+      <h2>The 1M Token Breakthrough</h2>
+      <p>
+        One of the most impressive additions to the series is <strong>Qwen2.5-1M</strong>. 
+        As the name suggests, this model supports a context length of up to 1 million tokens. 
+        To put that into perspective, that is approximately:
+      </p>
+      <ul>
+        <li>150 hours of speech transcripts</li>
+        <li>30,000 lines of code</li>
+        <li>10 full-length English novels</li>
+      </ul>
+      <p>
+        This massive context window allows developers to feed entire codebases or long 
+        technical documentations into the model without losing the "thread" of the conversation.
+      </p>
+
+      <h2>Specialized Models: Coder and Math</h2>
+      <p>
+        The Qwen team did not just stop at a general-purpose model. They released specialized 
+        versions that are currently benchmarks leaders:
+      </p>
+      <ul>
+        <li>
+          <strong>Qwen2.5-Coder:</strong> The 32B version of this model is currently outperforming 
+          models twice its size on benchmarks like HumanEval. It is becoming the go-to 
+          open-source engine for AI coding assistants.
+        </li>
+        <li>
+          <strong>Qwen2.5-Math:</strong> Focused on complex mathematical reasoning, this model 
+          shows that open-source LLMs can handle high-level logic and calculation with 
+          remarkable precision.
+        </li>
+      </ul>
+
+      <h2>Why It Matters for Developers</h2>
+      <p>
+        For developers, the Qwen 2.5 series offers a unique "Goldilocks" model for every 
+        use case. If you are running an AI agent on a resource-constrained VPS (like a 2GB RAM 
+        instance), the smaller 0.5B or 1.5B models are surprisingly capable for basic 
+        text processing and routing.
+      </p>
+      <p>
+        If you have more hardware or are using an API provider, the 72B-Instruct model 
+        regularly competes with the top-tier proprietary models while remaining 
+        completely open-source (under the Apache 2.0 license).
+      </p>
+
+      <h2>Key Performance Benchmarks</h2>
+      <p>
+        In recent evaluations, Qwen 2.5 has consistently ranked at the top of the Open LLM 
+        Leaderboard. It excels particularly in:
+      </p>
+      <ul>
+        <li><strong>Coding:</strong> Near-frontier performance in Python and C++.</li>
+        <li><strong>Multilingual Support:</strong> Supporting over 29 languages with deep cultural context.</li>
+        <li><strong>Instruction Following:</strong> Highly reliable at following complex, multi-step prompts.</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+      <p>
+        Qwen 2.5 represents a significant milestone for the open-source AI community. 
+        By providing specialized, high-performance models that can run on anything from a 
+        laptop to a massive GPU cluster, Alibaba is democratizing access to frontier-level 
+        AI performance.
+      </p>
+      <p>
+        Whether you are building a coding agent, a RAG system with massive documents, or 
+        just need a reliable open-source chat model, the Qwen 2.5 series is currently 
+        impossible to ignore.
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+article {
+  padding: 64px 0 56px;
+}
+h1 {
+  margin: 18px 0 10px;
+}
+.meta {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.article-content p, 
+.article-content li {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.article-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.article-content ul {
+  padding-left: 20px;
+}
+.callout {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(89, 215, 255, 0.08);
+  border: 1px solid rgba(89, 215, 255, 0.16);
+  color: #cfefff;
+}
+</style>

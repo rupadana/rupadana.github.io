@@ -1,0 +1,179 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Google AI Studio: A Free Developer Playground for Gemini API — Rupadana">
+  <article class="reveal">
+    <span class="tag">AI Tools</span>
+    <h1>Google AI Studio: A Free Developer Playground for Gemini API</h1>
+    <div class="meta">The fastest way to experiment with Gemini models — straight from your browser, at no cost.</div>
+
+    <div class="card article-content">
+      <p>
+        If you have ever wanted to try Google's latest AI models without diving into complex cloud 
+        infrastructure, <strong>Google AI Studio</strong> is the answer. It is a web-based interface 
+        designed specifically for developers who want to prototype quickly with the Gemini API - 
+        and the free tier is generous enough for serious experimentation.
+      </p>
+
+      <div class="callout">
+        Google AI Studio is the developer workspace for the Gemini API. Here you can test models, 
+        generate API keys, monitor usage, and export ready-to-use code - all for free to start, 
+        with no credit card required.
+      </div>
+
+      <h2>What is Google AI Studio?</h2>
+      <p>
+        Google AI Studio (aistudio.google.com) is the official web interface from Google for 
+        interacting with the Gemini API. It is not an end-user AI product like Gemini.app - 
+        it is a tool for <strong>developers</strong>. Here you can:
+      </p>
+      <ul>
+        <li>Test prompts interactively across various Gemini models</li>
+        <li>Generate API keys for use in your own applications</li>
+        <li>Experiment with multimodal inputs (text, images, audio, video, documents)</li>
+        <li>View prompt code results ready to be copied into Python, JavaScript, or cURL</li>
+        <li>Monitor usage and real-time rate limits</li>
+        <li>Fine-tune models with your own datasets</li>
+      </ul>
+
+      <h2>Models Available in the Free Tier (2026)</h2>
+      <p>
+        This is one of the biggest selling points of Google AI Studio - its free tier provides 
+        access to Google's most powerful models, not just "lite" versions. As of March 2026, 
+        here are the limits:
+      </p>
+      <ul>
+        <li>
+          <strong>Gemini 2.5 Pro</strong> - Google's most advanced model to date. 
+          Free: 2 RPM, 32K TPM. Ideal for prototyping and testing complex reasoning.
+        </li>
+        <li>
+          <strong>Gemini 2.0 Flash</strong> - Fast and efficient model. 
+          Free: 15 RPM, 250K TPM, up to 1,000 requests per day. Great for small-scale production apps.
+        </li>
+      </ul>
+      <p>
+        Important note: on the free tier, your data may be used by Google to train their models. 
+        If this is a concern, upgrade to the paid tier to opt-out.
+      </p>
+
+      <h2>Key Features</h2>
+
+      <h2>Automatic Code Export</h2>
+      <p>
+        Every time you test a prompt in the UI, AI Studio instantly generates code ready for 
+        use in several languages - Python, JavaScript, Go, and cURL. This significantly 
+        shortens the distance between "experimentation" and "implementation."
+      </p>
+
+      <h2>True Multimodality</h2>
+      <p>
+        Unlike many other AI platforms, Google AI Studio supports multimodal input natively - 
+        you can upload images, PDFs, audio, and even video directly from a YouTube URL and 
+        start asking questions about the content immediately.
+      </p>
+
+      <h2>System Instructions</h2>
+      <p>
+        You can define persistent <em>system prompts</em> - the same ones used in production 
+        apps - directly from the playground. This makes it easy to test AI behavior before 
+        integrating it into your application.
+      </p>
+
+      <h2>Grounding with Google Search</h2>
+      <p>
+        Models can be "grounded" to Google Search in real-time, so responses are based on 
+        the latest information from the web - not just older training data.
+      </p>
+
+      <h2>Google AI Studio vs. Vertex AI</h2>
+      <p>
+        Google has two AI platforms that often confuse new developers:
+      </p>
+      <ul>
+        <li>
+          <strong>Google AI Studio</strong> - For individual developers and prototyping. 
+          Free, instant setup, ideal for experimentation and small-scale apps.
+        </li>
+        <li>
+          <strong>Vertex AI</strong> - For enterprise and large-scale production. 
+          Requires a Google Cloud project, more complex, but provides SLAs, compliance, 
+          and full control over data.
+        </li>
+      </ul>
+
+      <h2>Getting Started in 3 Steps</h2>
+      <pre><code># 1. Open aistudio.google.com and log in with your Google Account
+
+# 2. Generate an API Key
+#    Click "Get API Key" -> "Create API key"
+
+# 3. Use it directly in your code
+curl -X POST \
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"{"} "contents": [{"{"} "parts": [{"{"} "text": "Hello, how are you?" {"}"}] {"}"}] {"}"}'</code></pre>
+
+      <h2>Conclusion</h2>
+      <p>
+        Google AI Studio is the best entry point for anyone looking to experiment with the 
+        Gemini API. The combination of a generous free tier, an intuitive UI, and automatic 
+        code export features makes it one of the best AI developer playgrounds available today.
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+article {
+  padding: 64px 0 56px;
+}
+h1 {
+  margin: 18px 0 10px;
+}
+.meta {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.article-content p,
+.article-content li {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.article-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.article-content ul {
+  padding-left: 20px;
+}
+.callout {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(89, 215, 255, 0.08);
+  border: 1px solid rgba(89, 215, 255, 0.16);
+  color: #cfefff;
+}
+code {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.92em;
+}
+pre {
+  background: #1a1a1a;
+  padding: 16px;
+  border-radius: 12px;
+  overflow-x: auto;
+  margin: 16px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+pre code {
+  background: none;
+  padding: 0;
+}
+</style>
