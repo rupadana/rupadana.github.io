@@ -1,0 +1,107 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Shinobi NVR: Solusi CCTV Open-Source Berbasis Node.js — Rupadana">
+  <article class="reveal">
+    <span class="tag">Tools</span>
+    <h1>Shinobi NVR: Solusi CCTV Open-Source Berbasis Node.js</h1>
+    <div class="meta">Membangun sistem pengawasan mandiri yang ringan, modern, dan fleksibel.</div>
+
+    <div class="card article-content">
+      <p>
+        Jika Anda mencari alternatif open-source untuk mengelola kamera CCTV atau IP Camera, <strong>Shinobi NVR</strong> adalah salah satu opsi terbaik saat ini. Berbeda dengan banyak sistem NVR tradisional yang terasa berat dan kaku, Shinobi dibangun menggunakan <strong>Node.js</strong> dan fokus pada performa serta kemudahan penggunaan bagi pengembang.
+      </p>
+
+      <div class="callout">
+        Shinobi adalah Network Video Recorder (NVR) open-source yang dirancang agar ringan namun tetap memiliki fitur lengkap untuk kebutuhan rumah tangga maupun bisnis.
+      </div>
+
+      <h2>Mengapa Memilih Shinobi?</h2>
+      <p>
+        Shinobi menawarkan beberapa keunggulan utama dibanding kompetitor seperti ZoneMinder atau sistem NVR bawaan vendor:
+      </p>
+      
+      <ul>
+        <li><strong>Arsitektur Modern:</strong> Menggunakan Node.js dan FFmpeg, Shinobi mampu menangani stream video dengan efisien.</li>
+        <li><strong>Ringan & Cepat:</strong> Tidak membutuhkan sumber daya sebesar sistem NVR lama, sehingga cocok dijalankan di server kecil atau VPS.</li>
+        <li><strong>Dukungan Multi-Protokol:</strong> Mendukung RTSP, RTMP, HTTP, ONVIF, dan banyak lagi.</li>
+        <li><strong>Interface Web yang Responsif:</strong> Memungkinkan akses kontrol dan monitoring langsung dari browser tanpa perlu plugin tambahan.</li>
+      </ul>
+
+      <h2>Fitur Utama</h2>
+      <ul>
+        <li><strong>Time-Lapse & Recording:</strong> Rekam video dalam format modern seperti MP4 atau WebM.</li>
+        <li><strong>Motion Detection:</strong> Deteksi gerakan berbasis software atau integrasi dengan plugin AI (seperti Object Detection).</li>
+        <li><strong>Cloud Storage Support:</strong> Kemampuan untuk mengunggah rekaman ke penyimpanan cloud atau server remote via FTP/SFTP.</li>
+        <li><strong>API First:</strong> Sangat mudah diintegrasikan dengan sistem automasi rumah atau aplikasi kustom melalui API yang lengkap.</li>
+      </ul>
+
+      <h2>Cara Instalasi (The Ninja Way)</h2>
+      <p>
+        Shinobi menyediakan skrip instalasi yang sangat mudah di Linux (Ubuntu/Debian). Cukup jalankan perintah satu baris ini di terminal Anda:
+      </p>
+
+      <pre><code>bash <(curl -s https://cdn.shinobi.video/installers/shinobi-install.sh)</code></pre>
+
+      <p>
+        Skrip tersebut akan secara otomatis memasang ketergantungan seperti Node.js, FFmpeg, dan MariaDB, lalu mengonfigurasi Shinobi agar siap digunakan.
+      </p>
+
+      <h2>Kesimpulan</h2>
+      <p>
+        Shinobi NVR adalah pilihan tepat bagi siapa saja yang ingin memiliki kendali penuh atas sistem keamanan mereka tanpa biaya lisensi yang mahal. Dengan dukungan komunitas yang aktif dan pengembangan yang cepat, Shinobi membuktikan bahwa sistem keamanan tingkat profesional bisa dibangun di atas teknologi open-source yang modern.
+      </p>
+
+      <p>
+        Apakah Anda siap mengubah PC tua atau server Anda menjadi pusat pengawasan cerdas? <em>Shinobi is the way.</em>
+      </p>
+    </div>
+  </article>
+</Layout>
+
+<style>
+article {
+  padding: 64px 0 56px;
+}
+h1 {
+  margin: 18px 0 10px;
+}
+.meta {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.article-content p, 
+.article-content li {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.02rem;
+}
+.article-content h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+}
+.article-content ul {
+  padding-left: 20px;
+}
+.article-content pre {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 20px 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.article-content code {
+  color: #59d7ff;
+  font-family: 'Fira Code', monospace;
+}
+.callout {
+  margin: 22px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(89, 215, 255, 0.08);
+  border: 1px solid rgba(89, 215, 255, 0.16);
+  color: #cfefff;
+}
+</style>
